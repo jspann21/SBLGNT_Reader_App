@@ -1,0 +1,31 @@
+# Local IDE state, caches, and build products
+.idea/
+.vscode/
+*.iml
+.gradle/
+.kotlin/
+build/
+local.properties
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.db
+!tools/corpus/base.db
+
+# Signing material and machine-only archives must never be published
+keystore.properties
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+.env
+.env.*
+!.env.example
+.signing/
+.local-archive/
+.local-tools/
+dist/
+app/google-services.json
+tools/corpus/output/

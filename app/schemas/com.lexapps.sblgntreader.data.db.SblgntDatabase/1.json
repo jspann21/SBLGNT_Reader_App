@@ -1,0 +1,658 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "2971dbbdd2ae82c46f7642ac066125f0",
+    "entities": [
+      {
+        "tableName": "books",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_id` INTEGER, `name` TEXT NOT NULL, `osis_name` TEXT NOT NULL, PRIMARY KEY(`book_id`))",
+        "fields": [
+          {
+            "fieldPath": "bookId",
+            "columnName": "book_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "osisName",
+            "columnName": "osis_name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "book_id"
+          ]
+        }
+      },
+      {
+        "tableName": "chapters",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`chapter_id` INTEGER, `book_id` INTEGER NOT NULL, `chapter_number` INTEGER NOT NULL, PRIMARY KEY(`chapter_id`), FOREIGN KEY(`book_id`) REFERENCES `books`(`book_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "chapterId",
+            "columnName": "chapter_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "bookId",
+            "columnName": "book_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "chapterNumber",
+            "columnName": "chapter_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "chapter_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "idx_chapters_book_id",
+            "unique": false,
+            "columnNames": [
+              "book_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_chapters_book_id` ON `${TABLE_NAME}` (`book_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "books",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "book_id"
+            ],
+            "referencedColumns": [
+              "book_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "verses",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`verse_id` INTEGER, `chapter_id` INTEGER NOT NULL, `verse_number` TEXT NOT NULL, PRIMARY KEY(`verse_id`), FOREIGN KEY(`chapter_id`) REFERENCES `chapters`(`chapter_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "verseId",
+            "columnName": "verse_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "chapterId",
+            "columnName": "chapter_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "verseNumber",
+            "columnName": "verse_number",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "verse_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "idx_verses_chapter_id",
+            "unique": false,
+            "columnNames": [
+              "chapter_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_verses_chapter_id` ON `${TABLE_NAME}` (`chapter_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "chapters",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "chapter_id"
+            ],
+            "referencedColumns": [
+              "chapter_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "paragraphs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`paragraph_id` INTEGER, `chapter_id` INTEGER NOT NULL, `paragraph_index` INTEGER NOT NULL, `verse_spans` TEXT NOT NULL, PRIMARY KEY(`paragraph_id`), FOREIGN KEY(`chapter_id`) REFERENCES `chapters`(`chapter_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "paragraphId",
+            "columnName": "paragraph_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "chapterId",
+            "columnName": "chapter_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "paragraphIndex",
+            "columnName": "paragraph_index",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "verseSpans",
+            "columnName": "verse_spans",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "paragraph_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "idx_paragraphs_chapter_id",
+            "unique": false,
+            "columnNames": [
+              "chapter_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_paragraphs_chapter_id` ON `${TABLE_NAME}` (`chapter_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "chapters",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "chapter_id"
+            ],
+            "referencedColumns": [
+              "chapter_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "vocab_metadata",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`vocab_name` TEXT NOT NULL, `min_level` INTEGER NOT NULL, `max_level` INTEGER NOT NULL, `display_name` TEXT NOT NULL, `level_label` TEXT NOT NULL, PRIMARY KEY(`vocab_name`))",
+        "fields": [
+          {
+            "fieldPath": "vocabName",
+            "columnName": "vocab_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "minLevel",
+            "columnName": "min_level",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maxLevel",
+            "columnName": "max_level",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "displayName",
+            "columnName": "display_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "levelLabel",
+            "columnName": "level_label",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "vocab_name"
+          ]
+        }
+      },
+      {
+        "tableName": "words",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`word_id` INTEGER, `verse_id` INTEGER NOT NULL, `word_index` INTEGER NOT NULL, `text` TEXT NOT NULL, `normalized_text` TEXT, `pos_tag` TEXT, `gloss` TEXT, `lemma` TEXT, `literal` TEXT, `louw` TEXT, `strong` TEXT, `type` TEXT, `vocab_levels` TEXT NOT NULL DEFAULT '{}', PRIMARY KEY(`word_id`), FOREIGN KEY(`verse_id`) REFERENCES `verses`(`verse_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "wordId",
+            "columnName": "word_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "verseId",
+            "columnName": "verse_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wordIndex",
+            "columnName": "word_index",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "normalizedText",
+            "columnName": "normalized_text",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "posTag",
+            "columnName": "pos_tag",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "gloss",
+            "columnName": "gloss",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "lemma",
+            "columnName": "lemma",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "literal",
+            "columnName": "literal",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "louw",
+            "columnName": "louw",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "strong",
+            "columnName": "strong",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "vocabLevels",
+            "columnName": "vocab_levels",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'{}'"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "word_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "idx_words_verse_id",
+            "unique": false,
+            "columnNames": [
+              "verse_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_words_verse_id` ON `${TABLE_NAME}` (`verse_id`)"
+          },
+          {
+            "name": "idx_words_lemma",
+            "unique": false,
+            "columnNames": [
+              "lemma"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_words_lemma` ON `${TABLE_NAME}` (`lemma`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "verses",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "verse_id"
+            ],
+            "referencedColumns": [
+              "verse_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "word_counts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`word_key` TEXT NOT NULL, `lemma` TEXT, `normalized_text` TEXT, `count` INTEGER NOT NULL, PRIMARY KEY(`word_key`))",
+        "fields": [
+          {
+            "fieldPath": "wordKey",
+            "columnName": "word_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lemma",
+            "columnName": "lemma",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "normalizedText",
+            "columnName": "normalized_text",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "count",
+            "columnName": "count",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "word_key"
+          ]
+        },
+        "indices": [
+          {
+            "name": "idx_word_counts_lemma",
+            "unique": false,
+            "columnNames": [
+              "lemma"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_word_counts_lemma` ON `${TABLE_NAME}` (`lemma`)"
+          },
+          {
+            "name": "idx_word_counts_normalized",
+            "unique": false,
+            "columnNames": [
+              "normalized_text"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_word_counts_normalized` ON `${TABLE_NAME}` (`normalized_text`)"
+          }
+        ]
+      },
+      {
+        "tableName": "global_stats",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`stat_key` TEXT NOT NULL, `stat_value` INTEGER NOT NULL, PRIMARY KEY(`stat_key`))",
+        "fields": [
+          {
+            "fieldPath": "statKey",
+            "columnName": "stat_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statValue",
+            "columnName": "stat_value",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "stat_key"
+          ]
+        }
+      },
+      {
+        "tableName": "proper_noun_forms",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`form_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `lemma` TEXT, `normalized_text` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "formId",
+            "columnName": "form_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lemma",
+            "columnName": "lemma",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "normalizedText",
+            "columnName": "normalized_text",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "form_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "idx_proper_noun_forms_lemma",
+            "unique": false,
+            "columnNames": [
+              "lemma"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_proper_noun_forms_lemma` ON `${TABLE_NAME}` (`lemma`)"
+          },
+          {
+            "name": "idx_proper_noun_forms_normalized",
+            "unique": false,
+            "columnNames": [
+              "normalized_text"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_proper_noun_forms_normalized` ON `${TABLE_NAME}` (`normalized_text`)"
+          }
+        ]
+      },
+      {
+        "tableName": "book_word_totals",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_id` INTEGER NOT NULL, `book_name` TEXT NOT NULL, `total_words` INTEGER NOT NULL, PRIMARY KEY(`book_id`))",
+        "fields": [
+          {
+            "fieldPath": "bookId",
+            "columnName": "book_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bookName",
+            "columnName": "book_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalWords",
+            "columnName": "total_words",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "book_id"
+          ]
+        }
+      },
+      {
+        "tableName": "book_lemma_stats",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`stat_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `book_id` INTEGER NOT NULL, `lemma` TEXT, `normalized_text` TEXT, `count` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "statId",
+            "columnName": "stat_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bookId",
+            "columnName": "book_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lemma",
+            "columnName": "lemma",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "normalizedText",
+            "columnName": "normalized_text",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "count",
+            "columnName": "count",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "stat_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "idx_book_lemma_stats_book_id",
+            "unique": false,
+            "columnNames": [
+              "book_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_book_lemma_stats_book_id` ON `${TABLE_NAME}` (`book_id`)"
+          },
+          {
+            "name": "idx_book_lemma_stats_lemma",
+            "unique": false,
+            "columnNames": [
+              "lemma"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_book_lemma_stats_lemma` ON `${TABLE_NAME}` (`lemma`)"
+          },
+          {
+            "name": "idx_book_lemma_stats_normalized",
+            "unique": false,
+            "columnNames": [
+              "normalized_text"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_book_lemma_stats_normalized` ON `${TABLE_NAME}` (`normalized_text`)"
+          }
+        ]
+      },
+      {
+        "tableName": "pos_lemma_stats",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`stat_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pos` TEXT NOT NULL, `lemma` TEXT, `normalized_text` TEXT, `count` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "statId",
+            "columnName": "stat_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pos",
+            "columnName": "pos",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lemma",
+            "columnName": "lemma",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "normalizedText",
+            "columnName": "normalized_text",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "count",
+            "columnName": "count",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "stat_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "idx_pos_lemma_stats_pos",
+            "unique": false,
+            "columnNames": [
+              "pos"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_pos_lemma_stats_pos` ON `${TABLE_NAME}` (`pos`)"
+          },
+          {
+            "name": "idx_pos_lemma_stats_lemma",
+            "unique": false,
+            "columnNames": [
+              "lemma"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_pos_lemma_stats_lemma` ON `${TABLE_NAME}` (`lemma`)"
+          },
+          {
+            "name": "idx_pos_lemma_stats_normalized",
+            "unique": false,
+            "columnNames": [
+              "normalized_text"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `idx_pos_lemma_stats_normalized` ON `${TABLE_NAME}` (`normalized_text`)"
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2971dbbdd2ae82c46f7642ac066125f0')"
+    ]
+  }
+}

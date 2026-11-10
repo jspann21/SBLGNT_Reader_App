@@ -1,0 +1,114 @@
+<resources>
+    <string name="action_retry">Try again</string>
+    <string name="vocab_settings_title">Vocabulary Systems</string>
+    <string name="cd_back">Back</string>
+
+    <string name="dialog_delete_word_title">Delete Word</string>
+    <string name="dialog_delete_word_message">Are you sure you want to delete \'%1$s\' from your vocabulary?</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="cd_delete_word">Delete word</string>
+
+    <string name="user_vocab_instruction">Long press a word to add to user vocab list</string>
+    <string name="user_vocab_sort_recent">Recent</string>
+    <string name="user_vocab_sort_alphabetical">Α-Ω</string>
+
+    <plurals name="user_vocab_word_count">
+        <item quantity="one">%1$d word</item>
+        <item quantity="other">%1$d words</item>
+    </plurals>
+
+    <string name="vocab_level_label">%1$s: %2$d</string>
+    <string name="stats_course_level">%1$s %2$d</string>
+    <string name="word_vocab_add">Add to My Vocab</string>
+    <string name="word_vocab_remove">Remove from My Vocab</string>
+    <string name="word_vocab_title">My Vocabulary</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="learned_words_header">Learned Words</string>
+    <string name="learned_words_support">Manage active systems and chapter levels</string>
+    <string name="unbold_proper_nouns">Unbold Proper Nouns</string>
+    <string name="formatting_header">Formatting</string>
+    <string name="font_size_title">Font Size</string>
+    <string name="font_size_current">Current size: %1$d</string>
+    <string name="line_spacing_title">Line Spacing</string>
+    <string name="line_spacing_compact">Compact</string>
+    <string name="line_spacing_cozy">Cozy</string>
+    <string name="line_spacing_spaced">Spaced</string>
+    <string name="verse_by_verse_mode">Verse-by-verse Mode</string>
+    <string name="justify_text">Justify Text</string>
+    <string name="hide_verse_numbers">Hide Verse Numbers</string>
+    <string name="use_greek_book_names">Use Greek Book Names</string>
+    <string name="theme_header">Theme</string>
+    <string name="theme_system_default">System Default</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="about_header">About</string>
+    <string name="about_support">Credits, data sources, and contact</string>
+    <string name="restart_quickstart_title">Restart Quickstart Tutorial</string>
+    <string name="restart_quickstart_support">Show the guided walkthrough again on the Reader screen.</string>
+    <string name="action_restart">Restart</string>
+    <string name="quickstart_reset_confirmation">Quickstart tutorial has been reset.</string>
+    <string name="action_next">Next</string>
+    <string name="action_got_it">Got it</string>
+    <string name="action_finish">Finish</string>
+    <string name="action_open_menu">Open Menu</string>
+    <string name="action_open_settings">Open Settings</string>
+    <string name="action_open_vocabulary">Open Vocabulary</string>
+    <string name="quickstart_step_label">Step %1$d of %2$d</string>
+    <string name="quickstart_choose_book_title">Choose Book &amp; Chapter</string>
+    <string name="quickstart_choose_book_body">Tap the menu to open the navigator. Pick any book, then a chapter.</string>
+    <string name="quickstart_settings_title">Settings</string>
+    <string name="quickstart_settings_body">Tap the settings cog to adjust reading preferences and typography.</string>
+    <string name="quickstart_vocab_title">Vocabulary Systems</string>
+    <string name="quickstart_vocab_body">Words not in your active vocab lists appear bold. Toggle systems and levels in Vocabulary Settings.</string>
+    <string name="quickstart_word_details_title">Word Details</string>
+    <string name="quickstart_word_details_body">Tap any word to see glosses, parts of speech, and list memberships.</string>
+    <string name="quickstart_add_vocab_title">Add to My Vocab</string>
+    <string name="quickstart_add_vocab_body">Long-press a word, then choose \'Add to My Vocab\'. You can remove it the same way.</string>
+    <string name="quickstart_swipe_chapters_title">Navigate Chapters</string>
+    <string name="quickstart_swipe_chapters_body">Swipe left and right to move between chapters.</string>
+    <string name="home_invalid_page">Invalid page</string>
+    <string name="about_company_name">Lex Apps</string>
+    <string name="about_app_name">SBLGNT Reader</string>
+    <string name="about_section_data_sources">Data Sources &amp; Credits</string>
+    <string name="about_link_sblgnt_text">SBLGNT Text</string>
+    <string name="about_link_paragraph_divisions">Paragraph Divisions</string>
+    <string name="about_link_morph_data">Morphological / Lexical Data</string>
+    <string name="about_link_leb_reverse_interlinear">LEB English–Greek Reverse Interlinear NT</string>
+    <string name="about_section_contact">Contact &amp; Feedback</string>
+    <string name="about_email_label">Email</string>
+    <string name="about_link_unavailable">No app is available to open this link.</string>
+    <string name="support_email" translatable="false">lex340700@gmail.com</string>
+    <string name="credit_sblgnt_text_url" translatable="false">https://github.com/LogosBible/SBLGNT</string>
+    <string name="credit_paragraph_divisions_url" translatable="false">https://github.com/aaronshaf/sblgnt</string>
+    <string name="credit_morph_data_url" translatable="false">https://github.com/morphgnt/sblgnt</string>
+    <string name="credit_leb_reverse_interlinear_url" translatable="false">https://www.sblgnt.com/download/</string>
+    <string name="learned_words_stats_button">Word Learning Stats</string>
+    <string name="learned_words_stats_support">See progress across your vocab lists</string>
+    <string name="stats_screen_title">Learning Progress</string>
+    <string name="stats_overall_progress_label">Progress</string>
+    <string name="stats_overall_words">%1$s / %2$s words</string>
+    <string name="stats_overall_lemmas">%1$s unique lemmas learned</string>
+    <string name="stats_breakdown_title">Vocabulary Sources</string>
+    <string name="stats_source_user">My Vocabulary</string>
+    <string name="stats_source_proper">Proper Nouns</string>
+    <string name="stats_source_user_subtitle">User added words</string>
+    <string name="stats_source_counts">%1$s lemmas • %2$s words</string>
+    <string name="stats_source_empty">No words learned yet.</string>
+    <string name="stats_no_systems_active">Activate a vocabulary system to start tracking your progress.</string>
+    <string name="stats_error_generic">Unable to load stats right now.</string>
+    <string name="stats_books_section_title">Book Readability</string>
+    <string name="stats_book_sort_canonical">Canonical</string>
+    <string name="stats_book_sort_most_readable">Highest %</string>
+    <string name="stats_pos_section_title">Parts of Speech</string>
+    <string name="stats_pos_verbs">Verbs</string>
+    <string name="stats_pos_non_verbs">Non-verbs</string>
+    <string name="stats_pos_nouns">Nouns</string>
+    <string name="stats_pos_adjectives">Adjectives</string>
+    <string name="stats_pos_particles">Particles</string>
+    <string name="stats_pos_prepositions">Prepositions</string>
+    <string name="stats_suggestions_title">High-impact Suggestions</string>
+    <string name="stats_suggestions_empty">Great work! No high-impact lemmas remain—keep exploring.</string>
+    <string name="stats_suggestion_gain">Adds %1$s more word tokens</string>
+</resources>
